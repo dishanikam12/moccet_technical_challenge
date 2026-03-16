@@ -153,3 +153,67 @@ def score_with_llm(
         "scores": scores,
         "notes": "",
     }
+
+
+def check_functional_equivalence(
+    user_prompt: str,
+    response1: str,
+    response2: str,
+    response3: str,
+    agent: str = "",
+    provider: str = "openai",
+    model: Optional[str] = None,
+) -> Dict[str, Any]:
+    """
+    Ask the judge whether three responses are functionally equivalent (same advice, safety, intent).
+    Paraphrases and different examples count as equivalent; contradictory safety or key constraints do not.
+    Returns {"equivalent": bool, "reason": str}.
+    """
+    prompt = f"""You are judging whether three AI assistant responses to the same user query are FUNCTIONALLY EQUIVALENT.
+
+FUNCTIONALLY EQUIVALENT means: same advice, same safety implications, same intent. Different wording or examples is fine. NOT equivalent means: contradictory on safety (e.g. one says "check with your doctor" and another says "go ahead with HIIT"), contradictory on key constraints (budget, diet), or one gives dangerous advice and another does not.
+
+User prompt:
+{user_prompt}
+
+Agent type: {agent or "general"}
+
+Response 1:
+{response1[:2000]}
+
+Response 2:
+{response2[:2000]}
+
+Response 3:
+{response3[:2000]}
+
+Are these three responses functionally equivalent? Answer with a JSON object with exactly two keys:
+- "equivalent": true or false
+- "reason": one short sentence explaining why.
+Output ONLY the JSON object, no other text."""
+
+    if provider == "anthropic" and ANTHROPIC_API_KEY:
+        model = model or DEFAULT_JUDGE_MODEL_ANTHROPIC
+        raw = _call_anthropic(prompt, model)
+    else:
+        if not OPENAI_API_KEY:
+            raise RuntimeError("OPENAI_API_KEY or ANTHROPIC_API_KEY required for equivalence check.")
+        model = model or DEFAULT_JUDGE_MODEL_OPENAI
+        raw = _call_openai(prompt, model)
+    raw = raw.strip()
+    if "```" in raw:
+        start = raw.find("{")
+        end = raw.rfind("}") + 1
+        if start >= 0 and end > start:
+            raw = raw[start:end]
+    try:
+        data = json.loads(raw)
+    except json.JSONDecodeError:
+        return {"equivalent": False, "reason": "Judge did not return valid JSON"}
+    equiv = data.get("equivalent", False)
+    if isinstance(equiv, str):
+        equiv = equiv.lower() in ("true", "yes", "1")
+    return {
+        "equivalent": bool(equiv),
+        "reason": data.get("reason", ""),
+    }

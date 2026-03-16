@@ -17,7 +17,7 @@ sys.path.insert(0, str(ROOT))
 
 from src.response_provider import MockProvider, LLMProvider, load_mock_responses
 from src.runner import run_eval
-from src.reliability import build_reliability_report, write_reliability_report
+from src.reliability import build_reliability_report, write_reliability_report, load_three_runs
 
 OUTPUTS = ROOT / "outputs"
 OUTPUTS.mkdir(parents=True, exist_ok=True)
@@ -48,35 +48,49 @@ def _results_to_save_format(results: list) -> list:
 
 def main():
     p = argparse.ArgumentParser(description="Run reliability benchmark (3 runs, variance, per-agent %).")
+    p.add_argument("--from-files", action="store_true", help="Load existing eval_results_run1/2/3.json and build report only (no new eval runs).")
     p.add_argument("--mock", action="store_true", help="Use mock provider.")
     p.add_argument("--llm", action="store_true", help="Use LLM provider (real agent for responses).")
     p.add_argument("--llm-judge", action="store_true", help="Use LLM-as-judge to score responses (requires API key). Default: off.")
+    p.add_argument("--no-llm-equivalence", action="store_true", help="Skip LLM functional-equivalence check for consistency; use BERTScore/lexical fallback only.")
     p.add_argument("--provider", choices=["openai", "anthropic"], default="openai")
     args = p.parse_args()
 
-    use_llm = args.llm and not args.mock
-    if use_llm:
-        provider = LLMProvider(provider=args.provider)
+    if args.from_files:
+        d1, d2, d3 = load_three_runs(outputs_dir=OUTPUTS)
+        if not d1 or not d2 or not d3:
+            print("Error: need existing eval_results_run1.json, run2.json, run3.json in outputs/", file=sys.stderr)
+            return 1
+        run_results = [d1, d2, d3]
+        print("Loaded existing run files from outputs/")
     else:
-        canned = load_mock_responses()
-        provider = MockProvider(canned_responses=canned)
-    use_llm_judge = args.llm_judge
+        use_llm = args.llm and not args.mock
+        if use_llm:
+            provider = LLMProvider(provider=args.provider)
+        else:
+            canned = load_mock_responses()
+            provider = MockProvider(canned_responses=canned)
+        use_llm_judge = args.llm_judge
+        run_results = []
+        for run_id in (1, 2, 3):
+            results = run_eval(
+                provider=provider,
+                use_llm_judge=use_llm_judge,
+                llm_provider=args.provider,
+            )
+            to_save = _results_to_save_format(results)
+            path = OUTPUTS / f"eval_results_run{run_id}.json"
+            with open(path, "w") as f:
+                json.dump(to_save, f, indent=2)
+            print(f"Run {run_id}: wrote {path}")
+            run_results.append(to_save)
 
-    run_results = []
-    for run_id in (1, 2, 3):
-        results = run_eval(
-            provider=provider,
-            use_llm_judge=use_llm_judge,
-            llm_provider=args.provider,
-        )
-        to_save = _results_to_save_format(results)
-        path = OUTPUTS / f"eval_results_run{run_id}.json"
-        with open(path, "w") as f:
-            json.dump(to_save, f, indent=2)
-        print(f"Run {run_id}: wrote {path}")
-        run_results.append(to_save)
-
-    report = build_reliability_report(run_results[0], run_results[1], run_results[2])
+    use_llm_equivalence = args.llm_judge and not args.no_llm_equivalence
+    report = build_reliability_report(
+        run_results[0], run_results[1], run_results[2],
+        use_llm_equivalence=use_llm_equivalence,
+        llm_provider=args.provider,
+    )
     out_path = write_reliability_report(report)
     print(f"Wrote {out_path}")
 
