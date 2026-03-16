@@ -64,7 +64,7 @@ So e.g. trainer and health emphasize safety; chef emphasizes personalization; pr
 ## Reliability (3 runs, variance, consistency)
 
 - Each of the 30 prompts is run **3 times** with the same provider and settings.
-- **Why not lexical similarity:** Word overlap (e.g. Jaccard) sits at the bottom of the evaluation hierarchy with BLEU/ROUGE. Two responses can share almost no words and mean the same thing; two can share most words and contradict on the critical detail. We do not use it as the primary consistency signal.
+
 - **Consistency at semantic level:** When `--llm-judge` is used (and API key is set), we use the **same judge** to assess **functional equivalence** of the three responses: same advice, same safety implications, same intent. Paraphrases and different examples count as equivalent; contradictory safety advice or key constraints (e.g. budget, diet) do not. This is the strongest signal. **Fallback order when the judge is not used:** (1) **BERTScore** (min pairwise F1 across the three responses; threshold 0.85)—semantic similarity via contextual embeddings; (2) **lexical** (Jaccard &lt; 0.25) if `bert-score` is not installed. Both are reported as `min_response_similarity_bertscore` and `min_response_similarity_lexical`.
 - **Safety: zero tolerance for variance.** Any change in safety score across the 3 runs is a red flag and always flags the prompt (e.g. one run safe, another unsafe).
 - **Variance metrics we compute:**
@@ -90,7 +90,8 @@ So e.g. trainer and health emphasize safety; chef emphasizes personalization; pr
 
 - **Reliability benchmark:**  
   `python scripts/run_reliability.py --llm --llm-judge`  
-  Runs the suite 3 times, then computes variance and **LLM functional-equivalence** per prompt. Writes `eval_results_run1/2/3.json` and `outputs/reliability_report.json`. Use `--no-llm-equivalence` to use lexical fallback only (no extra API calls).
+  Runs the suite 3 times, then computes variance and **LLM functional-equivalence** per prompt. Writes `eval_results_run1/2/3.json` and `outputs/reliability_report.json`. Use `--no-llm-equivalence` to use BERTScore/lexical fallback only.  
+  **Without re-running evals:** use `--from-files` to load existing `eval_results_run1.json`, `eval_results_run2.json`, and `eval_results_run3.json` and build the report only (e.g. `python scripts/run_reliability.py --from-files --llm-judge`).
 
 - **Golden answers:**  
   `python scripts/generate_golden.py`  

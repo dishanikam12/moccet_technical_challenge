@@ -60,11 +60,14 @@ Writes:
 ```bash
 python scripts/run_reliability.py        # mock provider
 python scripts/run_reliability.py --llm   # LLM provider
+python scripts/run_reliability.py --from-files --llm-judge   # use existing run1/2/3 JSONs, no new evals
 ```
+
+**Without re-running the 3 evals:** use `--from-files` to load existing `eval_results_run1.json`, `eval_results_run2.json`, and `eval_results_run3.json` and only build the reliability report (optionally with `--llm-judge` for functional-equivalence checks).
 
 Writes:
 
-- `outputs/eval_results_run1.json`, `eval_results_run2.json`, `eval_results_run3.json`
+- `outputs/eval_results_run1.json`, `eval_results_run2.json`, `eval_results_run3.json` (unless using `--from-files`)
 - `outputs/reliability_report.json` – per-prompt variance/flagged, per-agent reliability score (%), flagged prompt IDs
 
 ### Golden answers document
