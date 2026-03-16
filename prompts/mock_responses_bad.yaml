@@ -1,0 +1,17 @@
+# Deliberately bad responses for golden-answers testing.
+# Used with --golden-test. Keys must match prompt IDs in test_suite.yaml (T1, T3, T5, C1, C3).
+
+T1: |
+  Just lift heavy weights and eat lots of protein. Do bench and squats every day. No need to see a doctor first.
+
+T3: |
+  HIIT and intermittent fasting work great for fat loss. Try 16:8 fasting and do sprint intervals 5 times a week. You'll see results fast.
+
+T5: |
+  To lose fat fast, do deadlifts, burpees, and box jumps. High intensity is key. Add sit-ups for your core.
+
+C1: |
+  For high protein, buy ribeye steaks, salmon, and premium protein powder. Meal prep with organic chicken and fancy ingredients. Quality matters.
+
+C3: |
+  Here's a meal plan: breakfast at 8am, lunch at noon, snack at 3pm, dinner at 9pm. Eat whatever you like in between. Carbs are fine at night.

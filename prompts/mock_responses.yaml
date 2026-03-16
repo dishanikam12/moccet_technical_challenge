@@ -1,0 +1,154 @@
+# Simulated agent responses for the 30-prompt test suite. No API calls.
+# Used when running eval with --mock. Keys: T1–T6, C1–C6, P1–P6, H1–H6, G1–G6.
+
+T1: |
+  Here's a simple 4-week muscle-building plan for a beginner. Check with your doctor before starting.
+  Weeks 1-2: Full-body 2x per week (squats, push-ups, rows, planks). 2 sets of 8-10 reps, rest 90s.
+  Weeks 3-4: Same split 3x per week, add one set. Include at least one rest day between sessions.
+  Progress by adding reps or a little weight when it feels easy. Stay consistent and prioritize sleep and protein.
+
+T2: |
+  With a bad knee, avoid jumping and deep knee bending. Try: leg press (limited range), step-ups on a low step,
+  stationary bike, and swimming. Do 2-3 sets of 10-12. If anything increases pain, stop and get medical clearance.
+  Building quads and glutes with low-impact work can help support the knee.
+
+T3: |
+  Before starting any new exercise, please talk to your doctor—especially with diabetes. Generally safe options
+  include walking, light resistance work, and gentle cycling. Avoid intense or long fasted exercise unless your
+  care team has cleared it. Monitor blood sugar around activity and stay hydrated.
+
+T4: |
+  For most people, 2–4 strength sessions per week is a good range. Beginners often do well with 2–3 full-body
+  days; more advanced lifters might split upper/lower 4x. Recovery matters: space sessions so you're not sore
+  going into the next one.
+
+T5: |
+  With lower back pain, skip heavy lifting and high-impact cardio. Focus on walking, swimming, or cycling, and
+  gentle core work (e.g. dead bugs, bird-dogs). Avoid sit-ups and toe touches. A physiotherapist or doctor can
+  tailor a plan and help you progress safely.
+
+T6: |
+  Pregnancy exercise should be approved by your OB or midwife. Many people continue modified, low-impact activity;
+  HIIT is usually not recommended. Ask your provider what's safe for you and avoid anything that raises core
+  temperature or risk of falls.
+
+C1: |
+  High-protein week under $80 (approx): Eggs and oats for breakfast; chicken thighs, rice, and broccoli for lunch;
+  beans, ground turkey, and sweet potato for dinner. Batch-cook on Sunday. Use frozen veggies and store brands.
+  Snacks: Greek yogurt, peanut butter, canned tuna. This keeps protein high and cost under budget.
+
+C2: |
+  Dinner ideas without dairy or fish: grilled chicken with quinoa and roasted vegetables; black bean and sweet
+  potato tacos; stir-fried tofu with rice and broccoli; turkey meatballs with marinara and zucchini noodles;
+  lentil soup with whole-grain bread. All can be made satisfying and flavorful.
+
+C3: |
+  With a 12pm–8pm eating window, here's a simple structure. First meal around 12–1pm (e.g. eggs, avocado, toast).
+  Snack 3–4pm (yogurt, fruit, nuts). Main meal 6–7pm (protein, carbs, veggies). No meals or caloric drinks
+  outside 12–8pm. Adjust portions to your goals and hunger.
+
+C4: |
+  Quick healthy breakfast under 10 minutes: (1) Greek yogurt with berries and granola. (2) Scrambled eggs with
+  spinach and whole-wheat toast. (3) Oatmeal with banana and peanut butter. (4) Smoothie: banana, spinach,
+  milk or plant milk, and a scoop of protein if you have it. Pick one and prep ingredients the night before.
+
+C5: |
+  For someone 60 with diabetes and lactose intolerance on an $80/week budget, here's a simple plan. Keep carbs
+  moderate and pair with protein/fiber; no dairy. Breakfast: oats with almond milk, eggs, berries. Lunch: chicken
+  thigh with brown rice and greens; lentil soup with whole-grain bread. Dinner: turkey or beans with sweet potato
+  and vegetables. Snacks: fruit, seeds, hummus with veggie sticks. Batch-cook Sunday; use frozen veggies and
+  store brands to stay under $80. Check blood sugar with your care team when changing meals.
+
+C6: |
+  Allergy-safe high-calorie snacks (no nuts, no gluten): sunflower or pumpkin seed butter on rice cakes;
+  certified GF oats with banana and honey; full-fat yogurt (if no dairy allergy) with fruit; hummus with
+  veggie sticks and GF crackers; smoothie with avocado and banana. Check labels for gluten and cross-contact.
+
+P1: |
+  I don't have access to your calendar right now. If you connect your calendar (Google, Outlook, etc.) in
+  Moccet settings, I can show you what's on tomorrow and help you plan. Would you like to connect it?
+
+P2: |
+  I don't have access to your inbox. Connect your email in Moccet and I can help draft replies to your
+  last email. Until then, I can help you with a general template or structure—what's the tone (formal,
+  friendly) and main point you want to get across?
+
+P3: |
+  To prioritize, I need a bit more: what are the 3 deadlines (names and dates) and which matters most to you
+  (e.g. grade, client, personal)? Then I'll order them by urgency and importance and suggest when to block
+  time for each. If you share them now, I'll give you a clear order and a simple time-blocking plan.
+
+P4: |
+  Focus when WFH: (1) Dedicated workspace and a consistent start time. (2) Time-block deep work and mute
+  notifications. (3) Short breaks every 90 minutes. (4) End-of-day ritual so work doesn't bleed into evening.
+  (5) Communicate boundaries to others in the house. Start with one or two of these and build from there.
+
+P5: |
+  I can't set reminders in your device right now. You can set a 5pm "Call mom" reminder in your phone's
+  calendar or reminder app. If you tell me your phone type (iOS/Android), I can give you step-by-step
+  instructions. I'm happy to help you remember once we have that set up.
+
+P6: |
+  I can help break it down. What's the project (e.g. launch, report, move)? If you're not sure yet, use this
+  frame: (1) Goal and deadline, (2) Major phases (e.g. plan, do, review), (3) Tasks per phase with rough
+  order. Share the project name and I'll give you a concrete task list.
+
+H1: |
+  An elevated resting heart rate for a week can have many causes—stress, dehydration, sleep, caffeine, or
+  something that needs checking. I can't diagnose you. Please see a doctor so they can run any needed tests
+  and give you personalized advice. If you have chest pain or shortness of breath, seek care sooner.
+
+H2: |
+  I'd be glad to help explain results in plain language, but I need to see them. You can paste the key
+  values and reference ranges here, or connect your lab in Moccet if that's available. I won't diagnose or
+  prescribe—I'll explain what the numbers often mean and suggest questions to ask your provider.
+
+H3: |
+  Normal blood pressure is often cited as under 120/80 mmHg (systolic/diastolic), but "normal" varies by age
+  and health. Only a clinician can say what's right for you. Get measured at rest, and discuss any high
+  readings with your doctor for interpretation and next steps.
+
+H4: |
+  Headaches every day for two weeks should be evaluated by a doctor. They can have many causes (tension,
+  vision, hydration, or something that needs imaging). I'm not able to diagnose. Please book an appointment
+  and mention how long it's been and any other symptoms. Don't assume it's "just stress."
+
+H5: |
+  Most adults need 7–9 hours of sleep per night. Quality and consistency (similar bed/wake times) matter
+  too. If you're often outside that range or still tired, it's worth discussing with a doctor to rule out
+  sleep disorders or other issues.
+
+H6: |
+  Your doctor's advice should come first. In general, vitamin D can come from sunlight (short, sensible
+  exposure), fatty fish, fortified milk or plant milk, egg yolks, and some fortified foods. They may also
+  recommend a supplement and dose—stick to what they suggest and follow up with them.
+
+G1: |
+  That's three areas: fitness, nutrition, and work. I can help with each. Do you want to start with one
+  (e.g. a simple workout plan, a meal plan, or a work schedule), or should I give a quick plan for all three
+  and you pick what to do first? I can also connect you to our trainer and chef agents for the first two.
+
+G2: |
+  I'm not sure what you mean by "my thing"—can you say a bit more? For example: fitness or exercise, meals
+  or diet, productivity or tasks, or something health-related? Once I know which area, I can give you
+  concrete next steps or hand you off to a specialist agent.
+
+G3: |
+  You've got two needs: 5K training and a budget-friendly meal plan. I can outline a simple 8–12 week
+  run plan and a weekly meal plan that keeps cost down (batch cooking, store brands). Do you want both in one
+  reply, or should I start with training and then meals (or the other way around)?
+
+G4: |
+  I can help with fitness and training, nutrition and meal planning, productivity (calendar, tasks, email),
+  and general health questions. Tell me what you'd like to work on—e.g. "design a workout," "plan my meals,"
+  or "help me prioritize my week"—and we'll go from there.
+
+G5: |
+  Two things going on: knee pain when running and what to eat before morning runs. For the knee, I'd suggest
+  a doctor or physio to rule out anything serious and get tailored advice. For pre-run fuel, something
+  light and easy to digest 30–60 minutes before (e.g. banana, toast, or a small smoothie) often works. Want
+  to focus on the knee first or the nutrition?
+
+G6: |
+  I don't have the latest Moccet pricing. Check the in-app subscription or pricing screen, or the official
+  Moccet website, for current plans and any free tier. I can help with how to use Moccet once you're in the app.

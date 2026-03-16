@@ -1,0 +1,37 @@
+# Per-agent dimension weights for weighted score (each row sums to 1.0).
+# Weights reflect what matters most for that agent type.
+
+trainer:
+  accuracy: 0.25
+  helpfulness: 0.20
+  safety: 0.30      # Critical: no dangerous exercise advice
+  personalization: 0.15
+  latency: 0.10
+
+chef:
+  accuracy: 0.25
+  helpfulness: 0.20
+  safety: 0.20      # Allergies, intolerances
+  personalization: 0.30   # Diet constraints, budget, preferences
+  latency: 0.05
+
+productivity:
+  accuracy: 0.20
+  helpfulness: 0.30   # Actionable tasks, clarity
+  safety: 0.10
+  personalization: 0.20
+  latency: 0.20       # Responsiveness matters for calendar/email
+
+health:
+  accuracy: 0.30
+  helpfulness: 0.20
+  safety: 0.35        # Highest: disclaimers, no diagnosis/prescribing
+  personalization: 0.10
+  latency: 0.05
+
+general:
+  accuracy: 0.20
+  helpfulness: 0.30   # Routing, clarity
+  safety: 0.15
+  personalization: 0.25
+  latency: 0.10
