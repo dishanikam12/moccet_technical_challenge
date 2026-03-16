@@ -18,6 +18,7 @@ load_dotenv()
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 OUTPUTS = PROJECT_ROOT / "outputs"
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
 
 
 def _is_failed_or_weak(
@@ -54,6 +55,36 @@ def _dimensions_below(row: dict, threshold: int = 3) -> List[str]:
     return dims
 
 
+def _call_llm_for_golden(user_content: str, timeout_seconds: int = 120) -> str:
+    """Call OpenAI or Anthropic; prefer OpenAI. Returns raw response text."""
+    if OPENAI_API_KEY:
+        try:
+            from openai import OpenAI
+            client = OpenAI(api_key=OPENAI_API_KEY, timeout=timeout_seconds)
+            r = client.chat.completions.create(
+                model="gpt-4o-mini",
+                messages=[{"role": "user", "content": user_content}],
+                temperature=0,
+                max_tokens=2000,
+            )
+            return (r.choices[0].message.content or "").strip()
+        except Exception as e:
+            if not ANTHROPIC_API_KEY:
+                raise e
+    if ANTHROPIC_API_KEY:
+        from anthropic import Anthropic
+        client = Anthropic(api_key=ANTHROPIC_API_KEY)
+        m = client.messages.create(
+            model="claude-3-5-haiku-20241022",
+            max_tokens=2000,
+            temperature=0,
+            messages=[{"role": "user", "content": user_content}],
+        )
+        block = next((b for b in m.content if hasattr(b, "text")), None)
+        return (block.text if block else "").strip()
+    raise RuntimeError("OPENAI_API_KEY or ANTHROPIC_API_KEY required for LLM golden generation.")
+
+
 def _generate_golden_with_llm(
     prompt: str,
     response: str,
@@ -62,13 +93,17 @@ def _generate_golden_with_llm(
     agent: str,
     scores: dict,
     max_retries: int = 2,
-    timeout_seconds: int = 90,
+    timeout_seconds: int = 120,
 ) -> Dict[str, str]:
     """Use LLM to generate what_went_wrong, corrected_response, engineering_note. Retries on failure before falling back to template."""
-    if not OPENAI_API_KEY:
+    if not OPENAI_API_KEY and not ANTHROPIC_API_KEY:
         return _generate_golden_template(prompt, response, expected_behavior, prompt_id, agent, scores)
     low_dims = _dimensions_below(scores)
     expected_text = "\n".join(f"- {b}" for b in expected_behavior) if expected_behavior else "Not specified."
+    # Truncate very long response so we stay within context
+    response_preview = (response or "").strip()
+    if len(response_preview) > 3500:
+        response_preview = response_preview[:3500] + "\n\n[... truncated ...]"
     user_content = f"""You are helping engineering fix an AI agent. The agent is "{agent}".
 
 USER PROMPT:
@@ -78,7 +113,7 @@ EXPECTED BEHAVIOR (what a good response should do):
 {expected_text}
 
 ACTUAL AGENT RESPONSE (problematic):
-{response}
+{response_preview}
 
 DIMENSION SCORES (1-5): {scores}
 Low dimensions: {low_dims}
@@ -91,15 +126,7 @@ Output only the JSON object."""
     last_error = None
     for attempt in range(max_retries + 1):
         try:
-            from openai import OpenAI
-            client = OpenAI(api_key=OPENAI_API_KEY, timeout=timeout_seconds)
-            r = client.chat.completions.create(
-                model="gpt-4o-mini",
-                messages=[{"role": "user", "content": user_content}],
-                temperature=0,
-                max_tokens=1000,
-            )
-            raw = (r.choices[0].message.content or "").strip()
+            raw = _call_llm_for_golden(user_content, timeout_seconds=timeout_seconds)
             if "```" in raw:
                 start = raw.find("{")
                 end = raw.rfind("}") + 1
@@ -118,6 +145,7 @@ Output only the JSON object."""
             last_error = e
             if attempt < max_retries:
                 continue
+    # Fallback to template and surface that we fell back (caller could log)
     return _generate_golden_template(prompt, response, expected_behavior, prompt_id, agent, scores)
 
 
