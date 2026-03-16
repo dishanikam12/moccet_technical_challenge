@@ -8,3 +8,8 @@ outputs/*.csv
 outputs/*.json
 outputs/*.md
 !outputs/.gitkeep
+# Reliability benchmark artifacts (committed for deliverables)
+!outputs/eval_results_run1.json
+!outputs/eval_results_run2.json
+!outputs/eval_results_run3.json
+!outputs/reliability_report.json
