@@ -120,6 +120,6 @@ docs/                    # llm_judge_cost.md, llm_judge_prompt.md (cost and judg
 | 30-prompt scored spreadsheet | `outputs/scores.csv` (after running eval; includes `mean_score` and `weighted_score`) |
 | Golden answers document (failed/weak prompts) | `outputs/golden_answers.md` (generated) |
 | Reliability benchmark + variance data | `outputs/reliability_report.json` (after running reliability script) |
-| Methodology writeup | Added separately to `deliverables/` (Framework_Writeup.docx). |
+| Methodology writeup | `deliverables/Framework_Writeup.docx` |
 | Dashboard (optional) | `dashboard/app.py` — Streamlit UI for scores, reliability, golden answers; run: `streamlit run dashboard/app.py` |
 
