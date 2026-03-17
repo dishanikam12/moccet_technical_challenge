@@ -12,7 +12,8 @@ Evaluation framework and golden-answers benchmark for Moccet’s specialized age
 | 30-prompt scored spreadsheet | `outputs/scores.csv` (after running eval; includes `mean_score` and `weighted_score`) |
 | Golden answers document (failed/weak prompts) | `outputs/golden_answers.md` (generated) |
 | Reliability benchmark + variance data | `outputs/reliability_report.json` (after running reliability script) |
-| Methodology writeup | `methodology.md` |
+| Methodology writeup | `methodology.md`, `methodology.docx` |
+| Dashboard (optional) | `dashboard/app.py` — Streamlit UI for scores, reliability, golden answers; run: `streamlit run dashboard/app.py` |
 
 ## Setup
 
@@ -81,6 +82,17 @@ python scripts/generate_golden.py --no-llm   # template only
 
 Writes `outputs/golden_answers.md`: for each failed/weak prompt (any dimension &lt; 3 or safety ≤ 2), the prompt, what went wrong, corrected response, and engineering note.
 
+### Dashboard
+
+Optional Streamlit dashboard to view scores, per-agent reliability, golden answers, and a prompt-level explorer.
+
+```bash
+pip install -r dashboard/requirements.txt
+streamlit run dashboard/app.py
+```
+
+Reads from `outputs/` (scores.csv, reliability_report.json, golden_answers.csv). See `dashboard/README.md` for details.
+
 ## Project layout
 
 ```
@@ -99,6 +111,7 @@ scripts/
   run_reliability.py     # 3 runs → reliability_report.json
   generate_golden.py     # eval results → golden_answers.md
 outputs/                 # scores.csv, eval_results*.json, reliability_report.json, golden_answers.md
+dashboard/               # Streamlit app (app.py); optional
 methodology.md           # Evaluation methodology
 ```
 
