@@ -28,7 +28,7 @@ Optional: also set keys for:
 
 **Docs:** `docs/llm_judge_cost.md` (approximate cost per run), `docs/llm_judge_prompt.md` (judge prompt and rubric).
 
-**Use of LLM.** An LLM is used in every stage where we use it: (1) **Agent responses** — with `--llm`; (2) **Scoring** — with `--llm-judge` (scores accuracy, helpfulness, safety, personalization; latency from measured time); (3) **Golden answers** — default `generate_golden.py` uses an LLM to draft "what went wrong", corrected response, and engineering note; (4) **Reliability** — with `--llm-judge`, the judge assesses functional equivalence of the three responses per prompt. Fallbacks (e.g. BERTScore/lexical) apply only when the judge is skipped.
+
 
 ## Running the evaluation
 
