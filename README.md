@@ -2,20 +2,6 @@
 
 Evaluation framework and golden-answers benchmark for Moccet’s specialized agents (fitness trainer, chef/nutritionist, productivity, health, general). Produces quantifiable scores, reliability metrics, and actionable golden answers for engineering.
 
-## Deliverables
-
-| Deliverable | Location |
-|-------------|----------|
-| Working Python implementation (scoring + LLM-as-judge) | Run: `python scripts/run_eval.py --mock --llm-judge`. Code: `src/rubric.py`, `src/scorer.py`, `src/llm_judge.py`, `src/response_provider.py`, `src/runner.py` (+ `src/reliability.py`, `src/golden.py` for reliability and golden answers). |
-| 30-prompt test suite with expected behaviors | `prompts/test_suite.yaml` |
-| Per-agent weighted score config | `config/agent_weights.yaml` |
-| 30-prompt scored spreadsheet | `outputs/scores.csv` (after running eval; includes `mean_score` and `weighted_score`) |
-| Golden answers document (failed/weak prompts) | `outputs/golden_answers.md` (generated) |
-| Reliability benchmark + variance data | `outputs/reliability_report.json` (after running reliability script) |
-| Methodology writeup | Added separately to `deliverables/` (e.g. methodology.md or methodology.docx). |
-| Dashboard (optional) | `dashboard/app.py` — Streamlit UI for scores, reliability, golden answers; run: `streamlit run dashboard/app.py` |
-| Deliverables bundle (optional) | `deliverables/` — scoring .py files (rubric, scorer, llm_judge, runner), scores.csv, golden_answers, reliability_report.json, test_suite, agent_weights, and methodology doc (added separately). See `deliverables/README.md`. |
-
 ## Setup
 
 ```bash
@@ -126,3 +112,17 @@ docs/                    # llm_judge_cost.md, llm_judge_prompt.md (cost and judg
 ## Repo / shared link
 
 **Deliverable:** GitHub repo or shared link. Push this repo to GitHub (or your preferred host) and share the link for collaboration and CI. No secrets in repo; use `.env` for API keys and keep `outputs/` in `.gitignore` if you don’t want to commit run artifacts.
+
+## Deliverables
+
+| Deliverable | Location |
+|-------------|----------|
+| Working Python implementation (scoring + LLM-as-judge) | Run: `python scripts/run_eval.py --mock --llm-judge`. Code: `src/rubric.py`, `src/scorer.py`, `src/llm_judge.py`, `src/response_provider.py`, `src/runner.py` (+ `src/reliability.py`, `src/golden.py` for reliability and golden answers). |
+| 30-prompt test suite with expected behaviors | `prompts/test_suite.yaml` |
+| Per-agent weighted score config | `config/agent_weights.yaml` |
+| 30-prompt scored spreadsheet | `outputs/scores.csv` (after running eval; includes `mean_score` and `weighted_score`) |
+| Golden answers document (failed/weak prompts) | `outputs/golden_answers.md` (generated) |
+| Reliability benchmark + variance data | `outputs/reliability_report.json` (after running reliability script) |
+| Methodology writeup | Added separately to `deliverables/` (e.g. methodology.md or methodology.docx). |
+| Dashboard (optional) | `dashboard/app.py` — Streamlit UI for scores, reliability, golden answers; run: `streamlit run dashboard/app.py` |
+| Deliverables bundle (optional) | `deliverables/` — scoring .py files (rubric, scorer, llm_judge, runner), scores.csv, golden_answers, reliability_report.json, test_suite, agent_weights, and methodology doc (added separately). See `deliverables/README.md`. |
