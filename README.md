@@ -28,15 +28,29 @@ The same key(s) are used for **LLM response provider** (real agent responses wit
 
 ## Running the evaluation
 
-### Single run (scores + full results for golden)
+### Modes: with or without LLM
+
+| What | Without LLM (no API) | With LLM (needs API key in `.env`) |
+|------|----------------------|-------------------------------------|
+| **Single run (eval)** | `python scripts/run_eval.py` or `--mock` — mock responses; scoring uses measured latency + default 3 for other dimensions. | `--llm` = real agent responses. `--llm-judge` = LLM scores accuracy, helpfulness, safety, personalization. Combine: `--llm --llm-judge` for full pipeline. |
+| **Reliability (3 runs)** | `python scripts/run_reliability.py` — mock provider; consistency via BERTScore/lexical (no judge). | `--llm` = real agent. `--llm-judge` = LLM scores + LLM functional-equivalence check. `--no-llm-equivalence` = use judge for scores but BERTScore/lexical for equivalence only. |
+| **Golden answers** | `python scripts/generate_golden.py --no-llm` — template only; you fill in corrected response and note. | `python scripts/generate_golden.py` (default) — LLM drafts "what went wrong", corrected response, engineering note. |
+
+**Single run (scores + full results for golden)**
 
 This run uses the scoring framework and optional LLM-as-judge (see Deliverables: Working Python implementation).
 
 ```bash
+# No API: mock responses, latency-only scoring (other dims = 3)
+python scripts/run_eval.py
+
 # Mock responses + LLM-as-judge for scores (needs OPENAI_API_KEY in .env)
 python scripts/run_eval.py --mock --llm-judge
 
-# Real LLM for agent responses + LLM judge (needs API key in .env)
+# Real LLM for agent responses only (no judge)
+python scripts/run_eval.py --llm
+
+# Real LLM for agent responses + LLM judge (full pipeline)
 python scripts/run_eval.py --llm --llm-judge
 ```
 
@@ -59,12 +73,14 @@ Writes `outputs/golden_answers.md`: for each failed/weak prompt (any dimension &
 ### Reliability benchmark (3 runs + variance + per-agent %)
 
 ```bash
-python scripts/run_reliability.py        # mock provider
-python scripts/run_reliability.py --llm   # LLM provider
-python scripts/run_reliability.py --from-files --llm-judge   # use existing run1/2/3 JSONs, no new evals
+python scripts/run_reliability.py              # mock provider, no judge (BERTScore/lexical for equivalence)
+python scripts/run_reliability.py --llm         # LLM provider, no judge
+python scripts/run_reliability.py --llm --llm-judge   # LLM provider + judge (scores + equivalence)
+python scripts/run_reliability.py --from-files --llm-judge   # use existing run1/2/3 JSONs, build report with LLM equivalence only
+python scripts/run_reliability.py --from-files --no-llm-equivalence   # build report from existing runs, BERTScore/lexical only (no API)
 ```
 
-**Without re-running the 3 evals:** use `--from-files` to load existing `eval_results_run1.json`, `eval_results_run2.json`, and `eval_results_run3.json` and only build the reliability report (optionally with `--llm-judge` for functional-equivalence checks).
+**Without re-running the 3 evals:** use `--from-files` to load existing `eval_results_run1.json`, `eval_results_run2.json`, and `eval_results_run3.json` and only build the reliability report. Add `--llm-judge` for LLM functional-equivalence checks, or `--no-llm-equivalence` to use BERTScore/lexical only (no API).
 
 Writes:
 
