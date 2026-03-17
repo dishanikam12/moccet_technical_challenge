@@ -12,9 +12,9 @@ Evaluation framework and golden-answers benchmark for Moccet’s specialized age
 | 30-prompt scored spreadsheet | `outputs/scores.csv` (after running eval; includes `mean_score` and `weighted_score`) |
 | Golden answers document (failed/weak prompts) | `outputs/golden_answers.md` (generated) |
 | Reliability benchmark + variance data | `outputs/reliability_report.json` (after running reliability script) |
-| Methodology writeup | `methodology.md`, `methodology.docx` (generate Word: `python scripts/export_methodology_doc.py`) |
+| Methodology writeup | Added separately to `deliverables/` (e.g. methodology.md or methodology.docx). |
 | Dashboard (optional) | `dashboard/app.py` — Streamlit UI for scores, reliability, golden answers; run: `streamlit run dashboard/app.py` |
-| Deliverables bundle (optional) | `deliverables/` — copies of scoring .py files (rubric, scorer, llm_judge, runner), scores.csv, golden_answers, reliability_report.json, methodology, test_suite, agent_weights. See `deliverables/README.md`. |
+| Deliverables bundle (optional) | `deliverables/` — scoring .py files (rubric, scorer, llm_judge, runner), scores.csv, golden_answers, reliability_report.json, test_suite, agent_weights, and methodology doc (added separately). See `deliverables/README.md`. |
 
 ## Setup
 
@@ -118,10 +118,8 @@ scripts/
   run_reliability.py     # 3 runs → reliability_report.json
   generate_golden.py     # eval results → golden_answers.md
 outputs/                 # scores.csv, eval_results*.json, reliability_report.json, golden_answers.md
-deliverables/            # Bundle: scoring .py files, scores, golden_answers, reliability_report, methodology, test_suite (see deliverables/README.md)
+deliverables/            # Bundle: scoring .py files, scores, golden_answers, reliability_report, test_suite; methodology doc added separately (see deliverables/README.md)
 dashboard/               # Streamlit app (app.py); optional
-methodology.md           # Evaluation methodology
-scripts/export_methodology_doc.py   # Exports methodology.docx
 docs/                    # llm_judge_cost.md, llm_judge_prompt.md (cost and judge prompt)
 ```
 
