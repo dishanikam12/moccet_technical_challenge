@@ -109,9 +109,6 @@ dashboard/               # Streamlit app (app.py); optional
 docs/                    # llm_judge_cost.md, llm_judge_prompt.md (cost and judge prompt)
 ```
 
-## Repo / shared link
-
-**Deliverable:** GitHub repo or shared link. Push this repo to GitHub (or your preferred host) and share the link for collaboration and CI. No secrets in repo; use `.env` for API keys and keep `outputs/` in `.gitignore` if you don’t want to commit run artifacts.
 
 ## Deliverables
 
