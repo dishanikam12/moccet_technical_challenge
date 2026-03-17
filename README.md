@@ -22,7 +22,7 @@ The `.env` file is gitignored; do not commit it. Then run with `--llm-judge` (se
 
 The same key(s) are used for **LLM response provider** (real agent responses with `--llm`), **LLM-as-judge** (scoring with `--llm-judge`), and **Golden answers** (LLM-drafted corrected response and engineering note). One key is enough.
 
-**Docs:** `docs/llm_judge_cost.md` (approximate cost per run), `docs/llm_judge_prompt.md` (judge prompt and rubric).
+**Docs:** `docs/llm_judge_cost.docx` (approximate cost per run), `docs/llm_judge_prompt.docx` (judge prompt and rubric).
 
 
 
@@ -102,7 +102,7 @@ scripts/
 outputs/                 # scores.csv, eval_results*.json, reliability_report.json, golden_answers.md
 deliverables/            # Bundle: scoring .py files, scores, golden_answers, reliability_report, test_suite; methodology doc added separately (see deliverables/README.md)
 dashboard/               # Streamlit app (app.py); optional
-docs/                    # llm_judge_cost.md, llm_judge_prompt.md (cost and judge prompt)
+docs/                    # llm_judge_cost.docx, llm_judge_prompt.docx (cost and judge prompt)
 ```
 
 
