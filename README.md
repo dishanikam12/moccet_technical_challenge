@@ -20,11 +20,7 @@ OPENAI_API_KEY=sk-your-actual-key-here
 Or for Anthropic: `ANTHROPIC_API_KEY=sk-ant-...`  
 The `.env` file is gitignored; do not commit it. Then run with `--llm-judge` (see below).
 
-Optional: also set keys for:
-
-- **LLM response provider** – real agent responses instead of mock
-- **LLM-as-judge** – automatic scoring of accuracy, helpfulness, safety, personalization (latency is always from measured time)
-- **Golden answers** – LLM-generated “what went wrong”, corrected response, and engineering note
+The same key(s) are used for **LLM response provider** (real agent responses with `--llm`), **LLM-as-judge** (scoring with `--llm-judge`), and **Golden answers** (LLM-drafted corrected response and engineering note). One key is enough.
 
 **Docs:** `docs/llm_judge_cost.md` (approximate cost per run), `docs/llm_judge_prompt.md` (judge prompt and rubric).
 
