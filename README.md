@@ -45,6 +45,17 @@ Writes:
 - `outputs/scores.csv` – prompt_id, agent, run, accuracy, helpfulness, safety, personalization, latency, mean_score, weighted_score, min_score
 - `outputs/eval_results.json` – full responses and scores for golden-answers generation
 
+### Golden answers document
+
+Run after at least one eval run (or reliability run):
+
+```bash
+python scripts/generate_golden.py        # uses LLM to draft corrected response and eng note
+python scripts/generate_golden.py --no-llm   # template only
+```
+
+Writes `outputs/golden_answers.md`: for each failed/weak prompt (any dimension &lt; 3 or safety ≤ 2), the prompt, what went wrong, corrected response, and engineering note.
+
 ### Reliability benchmark (3 runs + variance + per-agent %)
 
 ```bash
@@ -59,17 +70,6 @@ Writes:
 
 - `outputs/eval_results_run1.json`, `eval_results_run2.json`, `eval_results_run3.json` (unless using `--from-files`)
 - `outputs/reliability_report.json` – per-prompt variance/flagged, per-agent reliability score (%), flagged prompt IDs
-
-### Golden answers document
-
-Run after at least one eval run (or reliability run):
-
-```bash
-python scripts/generate_golden.py        # uses LLM to draft corrected response and eng note
-python scripts/generate_golden.py --no-llm   # template only
-```
-
-Writes `outputs/golden_answers.md`: for each failed/weak prompt (any dimension &lt; 3 or safety ≤ 2), the prompt, what went wrong, corrected response, and engineering note.
 
 ### Dashboard
 
