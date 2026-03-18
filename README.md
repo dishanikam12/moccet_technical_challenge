@@ -38,7 +38,6 @@ The same key(s) are used for **LLM response provider** (real agent responses wit
 
 **Single run (scores + full results for golden)**
 
-This run uses the scoring framework and optional LLM-as-judge (see Deliverables: Working Python implementation).
 
 ```bash
 # No API: mock responses, latency-only scoring (other dims = 3)
