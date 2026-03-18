@@ -22,6 +22,8 @@ The `.env` file is gitignored; do not commit it. Then run with `--llm-judge` (se
 
 The same key(s) are used for **LLM response provider** (real agent responses with `--llm`), **LLM-as-judge** (scoring with `--llm-judge`), and **Golden answers** (LLM-drafted corrected response and engineering note). One key is enough.
 
+**Models and provider:** Default is OpenAI. Add `--provider anthropic` to `run_eval.py` and `run_reliability.py` to use Anthropic instead. Default models: **OpenAI** `gpt-4o-mini` (agent, judge, golden); **Anthropic** `claude-3-5-haiku-20241022`. Defined in `src/llm_judge.py`, `src/response_provider.py`, `src/golden.py`.
+
 **Docs:** `docs/llm_judge_cost.docx` (approximate cost per run), `docs/llm_judge_prompt.docx` (judge prompt and rubric).
 
 
