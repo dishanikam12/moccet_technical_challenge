@@ -73,12 +73,15 @@ Writes `outputs/golden_answers.md`: for each failed/weak prompt (any dimension &
 
 ### Reliability benchmark (3 runs + variance + per-agent %)
 
+**Mock provider (default):** For each of the 3 runs, responses come from **canned mock text** (no API calls for the agent). Use this to test the reliability pipeline and scoring without agent cost; answers are deterministic per prompt.
+
+**LLM provider (`--llm`):** For each of the 3 runs, responses come from the **real agent model** (same as single-run `--llm`). Use this to measure whether the actual agent gives consistent answers across runs for the same prompt.
+
 ```bash
 python scripts/run_reliability.py              # mock provider, no judge (BERTScore/lexical for equivalence)
 python scripts/run_reliability.py --llm         # LLM provider, no judge
 python scripts/run_reliability.py --llm --llm-judge   # LLM provider + judge (scores + equivalence)
-python scripts/run_reliability.py --from-files --llm-judge   # use existing run1/2/3 JSONs, build report with LLM equivalence only
-python scripts/run_reliability.py --from-files --no-llm-equivalence   # build report from existing runs, BERTScore/lexical only (no API)
+
 ```
 
 **Without re-running the 3 evals:** use `--from-files` to load existing `eval_results_run1.json`, `eval_results_run2.json`, and `eval_results_run3.json` and only build the reliability report. Add `--llm-judge` for LLM functional-equivalence checks, or `--no-llm-equivalence` to use BERTScore/lexical only (no API).
