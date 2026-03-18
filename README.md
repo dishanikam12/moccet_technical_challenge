@@ -84,7 +84,6 @@ python scripts/run_reliability.py --llm --llm-judge   # LLM provider + judge (sc
 
 ```
 
-**Without re-running the 3 evals:** use `--from-files` to load existing `eval_results_run1.json`, `eval_results_run2.json`, and `eval_results_run3.json` and only build the reliability report. Add `--llm-judge` for LLM functional-equivalence checks, or `--no-llm-equivalence` to use BERTScore/lexical only (no API).
 
 Writes:
 
