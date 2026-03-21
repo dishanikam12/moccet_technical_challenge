@@ -66,10 +66,10 @@ C6: |
 
 P1: |
   I don't have access to your calendar right now. If you connect your calendar (Google, Outlook, etc.) in
-  Moccet settings, I can show you what's on tomorrow and help you plan. Would you like to connect it?
+  the app's settings, I can show you what's on tomorrow and help you plan. Would you like to connect it?
 
 P2: |
-  I don't have access to your inbox. Connect your email in Moccet and I can help draft replies to your
+  I don't have access to your inbox. Connect your email in the app and I can help draft replies to your
   last email. Until then, I can help you with a general template or structure—what's the tone (formal,
   friendly) and main point you want to get across?
 
@@ -100,7 +100,7 @@ H1: |
 
 H2: |
   I'd be glad to help explain results in plain language, but I need to see them. You can paste the key
-  values and reference ranges here, or connect your lab in Moccet if that's available. I won't diagnose or
+  values and reference ranges here, or connect your lab in the app if that's available. I won't diagnose or
   prescribe—I'll explain what the numbers often mean and suggest questions to ask your provider.
 
 H3: |
@@ -150,5 +150,5 @@ G5: |
   to focus on the knee first or the nutrition?
 
 G6: |
-  I don't have the latest Moccet pricing. Check the in-app subscription or pricing screen, or the official
-  Moccet website, for current plans and any free tier. I can help with how to use Moccet once you're in the app.
+  I don't have the latest pricing information. Check the in-app subscription or pricing screen, or the official
+  website, for current plans and any free tier. I can help with how to use the app once you're in.

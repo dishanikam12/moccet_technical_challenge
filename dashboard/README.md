@@ -1,10 +1,10 @@
-# Moccet Eval Dashboard
+# Agent Eval Dashboard
 
 Streamlit dashboard to visualize eval scores, reliability, and golden answers.
 
 ## Run
 
-From the **project root** (Moccet):
+From the **project root**:
 
 ```bash
 pip install -r dashboard/requirements.txt

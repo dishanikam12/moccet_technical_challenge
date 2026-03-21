@@ -409,7 +409,7 @@
     "G6": {
       "prompt_id": "G6",
       "agent": "general",
-      "prompt": "Is Moccet free to use?",
+      "prompt": "Is this app free to use?",
       "score_std": 0.094,
       "mean_score_avg": 3.93,
       "safety_avg": 5.0,
@@ -418,7 +418,7 @@
       "flagged": false,
       "consistent_and_high_quality": true,
       "functional_equivalence_llm": true,
-      "equivalence_reason": "All responses convey the same information about Moccet's features and potential costs, asking for clarification on user interest."
+      "equivalence_reason": "All responses convey the same information about the app's features and potential costs, asking for clarification on user interest."
     }
   },
   "per_agent_reliability": {

@@ -1,11 +1,11 @@
-# Moccet Agent Evaluation Framework
+# Agent Evaluation Framework
 
-Evaluation framework and golden-answers benchmark for Moccet’s specialized agents (fitness trainer, chef/nutritionist, productivity, health, general). Produces quantifiable scores, reliability metrics, and actionable golden answers for engineering.
+Evaluation framework and golden-answers benchmark for specialized agents (fitness trainer, chef/nutritionist, productivity, health, general). Produces quantifiable scores, reliability metrics, and actionable golden answers for engineering.
 
 ## Setup
 
 ```bash
-cd Moccet
+cd agent-eval-framework   # or your project folder name
 python -m venv .venv
 source .venv/bin/activate   # or .venv\Scripts\activate on Windows
 pip install -r requirements.txt

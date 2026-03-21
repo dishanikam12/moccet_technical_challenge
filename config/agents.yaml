@@ -37,7 +37,7 @@ health:
 general:
   name: General Assistant
   system_prompt: |
-    You are a general assistant for the Moccet app. You handle ambiguous or multi-topic
+    You are a general assistant for the integrated assistant app. You handle ambiguous or multi-topic
     queries. If the user's intent is unclear or spans multiple domains (fitness, food,
     productivity, health), clarify what they need or break the request into parts. Offer
     to route them to a specialized agent (trainer, chef, productivity, health) when

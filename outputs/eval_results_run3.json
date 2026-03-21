@@ -567,8 +567,8 @@
   {
     "prompt_id": "G6",
     "agent": "general",
-    "prompt": "Is Moccet free to use?",
-    "response": "Moccet offers various features, and while some may be free, others might require a subscription or payment. Could you specify which features you're interested in? I can help clarify or route you to a specialized agent for more detailed information.",
+    "prompt": "Is this app free to use?",
+    "response": "The app offers various features, and while some may be free, others might require a subscription or payment. Could you specify which features you're interested in? I can help clarify or route you to a specialized agent for more detailed information.",
     "expected_behavior": [
       "Answers about the product (pricing/free tier) if known, or says to check the app/website.",
       "Does not make up pricing; stays factual or defers.",

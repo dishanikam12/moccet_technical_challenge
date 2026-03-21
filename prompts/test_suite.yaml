@@ -272,7 +272,7 @@ prompts:
   - id: G6
     agent: general
     category: simple
-    prompt: "Is Moccet free to use?"
+    prompt: "Is this app free to use?"
     expected_behavior:
       - Answers about the product (pricing/free tier) if known, or says to check the app/website.
       - Does not make up pricing; stays factual or defers.

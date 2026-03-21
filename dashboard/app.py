@@ -1,5 +1,5 @@
 """
-Moccet Eval Dashboard — Streamlit app.
+Agent Eval Dashboard — Streamlit app.
 Reads from ../outputs/ (scores.csv, reliability_report.json, golden_answers.csv).
 Run from project root: streamlit run dashboard/app.py
 """
@@ -51,8 +51,8 @@ def load_golden():
 
 
 def main():
-    st.set_page_config(page_title="Moccet Eval Dashboard", layout="wide")
-    st.title("Moccet Agent Evaluation Dashboard")
+    st.set_page_config(page_title="Agent Eval Dashboard", layout="wide")
+    st.title("Agent Evaluation Dashboard")
 
     scores_df = load_scores()
     reliability = load_reliability()

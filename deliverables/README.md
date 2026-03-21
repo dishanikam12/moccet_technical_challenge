@@ -1,6 +1,6 @@
 # Deliverables (excluding GitHub repo)
 
-This folder contains the evaluation deliverables for the Moccet agent framework.
+This folder contains the evaluation deliverables for the agent evaluation framework.
 
 | File | Description |
 |------|-------------|
